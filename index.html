@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escalation Path Labs</title>
+  <meta name="description" content="Practical break/fix labs for help desk, NOC, and junior sysadmin techs moving into cloud infrastructure.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="/">Escalation Path Labs</a>
+      <nav><a href="#labs">Labs</a><a href="#about">About</a><a href="mailto:escalationpathlabs@gmail.com">Support</a></nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow">HELP DESK → INFRASTRUCTURE</p>
+      <h1>Get out of the queue.<br>Learn to fix the stuff behind it.</h1>
+      <p class="lede">Hands-on break/fix labs for people moving from help desk, NOC, desktop support, or junior sysadmin work into Linux, cloud, containers, and infrastructure.</p>
+      <div class="actions"><a class="button primary" href="#labs">See the first lab pack</a><a class="button secondary" href="https://github.com/escalationpathlabs">GitHub</a></div>
+    </section>
+    <section class="section alt" id="labs"><div class="wrap product-grid"><div>
+      <p class="eyebrow">FIRST PACK</p><h2>Kubernetes Break/Fix Labs</h2><p class="price">$10 · one-time</p>
+      <p>Ten troubleshooting scenarios built around failures that make Kubernetes feel haunted until you learn where to look.</p>
+      <ul><li>Broken manifests you diagnose and repair yourself</li><li>Services, scheduling, storage, RBAC, networking, and more</li><li>Detailed solutions explaining what failed and why</li><li>Cleanup scripts and reusable lab files</li></ul>
+      <p class="small">Checkout is being wired up now. Free sample labs will also be published on GitHub.</p>
+    </div><div class="terminal"><div class="terminal-bar"><span></span><span></span><span></span></div><pre><code>$ kubectl get endpoints api-svc
+NAME      ENDPOINTS   AGE
+api-svc   &lt;none&gt;      4m
+
+$ kubectl describe svc api-svc
+Selector: app=backend
+
+$ kubectl get pods --show-labels
+api-7c9...   Running   app=cache
+
+# The pod isn't haunted.
+# The selector is wrong.</code></pre></div></div></section>
+    <section class="section wrap" id="about"><p class="eyebrow">WHY THIS EXISTS</p><h2>Learn troubleshooting, not incantations.</h2><div class="columns"><p>Cloud training has no shortage of videos telling you where to click. That is useful right up until something breaks. Escalation Path Labs is built around deliberately broken systems, observable symptoms, and the process of figuring out what actually happened.</p><p>The material is aimed at working IT people who already know how to follow a ticket, use a terminal, and Google an error message, but want the judgment required to own more of the stack.</p></div></section>
+    <section class="section alt"><div class="wrap narrow"><p class="eyebrow">WHAT'S NEXT</p><h2>Kubernetes is only the first escalation.</h2><p>Future lab packs will cover Linux, networking, containers, IAM, infrastructure-as-code, and cloud operations. The goal is not another giant course library. It is to make small, useful things you can actually finish.</p></div></section>
+  </main>
+  <footer><div class="wrap footer-grid"><div><strong>Escalation Path Labs</strong><p class="small">Practical break/fix training for the next rung up.</p></div><div class="footer-links"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/refunds.html">Refunds</a><a href="mailto:escalationpathlabs@gmail.com">Support</a></div></div></footer>
+</body>
+</html>
