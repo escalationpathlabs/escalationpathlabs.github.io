@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: breakfix-01
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: breakfix-01
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.27-alpine
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-svc
+  namespace: breakfix-01
+spec:
+  selector:
+    app: backend
+  ports:
+  - port: 80
+    targetPort: 80
