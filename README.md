@@ -1,8 +1,12 @@
+<p align="left"><img src="./brand-mark.svg" width="96" alt="Escalation Path Labs ESC up mark"></p>
+
 # Escalation Path Labs
 
-**Get out of the queue. Learn to fix the stuff behind it.**
+**GET OUT OF THE QUEUE. FIX THE STUFF BEHIND IT.**
 
-Practical break/fix labs and guides for help desk, NOC, desktop support, and junior sysadmin techs moving into cloud infrastructure.
+`BREAK / FIX / LEARN` · practical troubleshooting labs for help desk, NOC, desktop support, and junior sysadmin people moving into cloud infrastructure.
+
+> **FIELD MANUAL 001:** Kubernetes Break/Fix. Intentionally broken. No signup. No video course.
 
 ## Start here
 
@@ -18,13 +22,15 @@ The repository contains the actual broken manifests and cleanup scripts, not jus
 2. [`labs/02-taint-pending`](labs/02-taint-pending/) — NoSchedule taint without a toleration
 3. [`labs/03-pvc-wrong-class`](labs/03-pvc-wrong-class/) — PV/PVC StorageClass mismatch
 
-The idea is simple: apply broken config to a disposable cluster, inspect state, form a theory, make the smallest defensible fix, and verify it.
+The loop is simple: **break → inspect → explain → fix → verify**.
+
+Apply bad config to a disposable cluster, inspect what Kubernetes is actually telling you, form a theory, make the smallest defensible fix, and prove it worked.
 
 These are original generic exercises. They are not certification exam dumps, customer incidents, employer material, or vendor runbooks.
 
 ## Full pack
 
-The paid pack has 10 Kubernetes troubleshooting labs and costs $10 one-time. Do the free ones first. If the format is useful, the rest are here:
+The paid pack has 10 Kubernetes troubleshooting labs and costs **$10 one-time**. Do the free ones first. If the format is useful, the rest are here:
 
 https://buy.stripe.com/6oUdR972E2EtfpQ7L84c800
 
