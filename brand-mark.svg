@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Escalation Path Labs ESC up mark</title>
+  <desc id="desc">A dark terminal key marked ESC with a yellow-orange arrow breaking upward through the top right corner.</desc>
+  <rect width="512" height="512" rx="72" fill="#0b0e0f"/>
+  <path d="M72 110V72h300M440 192v248H72V210" fill="none" stroke="#ffad0a" stroke-width="22" stroke-linecap="square"/>
+  <text x="100" y="330" fill="#ffad0a" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="156" font-weight="900" letter-spacing="-10">ESC</text>
+  <path d="M325 182 425 82M355 82h70v70" fill="none" stroke="#ffad0a" stroke-width="24" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M96 390h132" stroke="#f2ead3" stroke-width="12" stroke-linecap="square" opacity=".9"/>
+</svg>
