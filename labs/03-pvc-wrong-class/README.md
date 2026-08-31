@@ -2,7 +2,7 @@
 
 **Level:** Medium · **Target:** 10–15 minutes
 
-A PersistentVolume exists and has enough capacity, but the claim stays `Pending` and the pod cannot start.
+A PersistentVolume exists, has enough capacity, and is explicitly requested by the claim. The claim still stays `Pending` and the pod cannot start.
 
 **Goal:** Bind `data-pvc` to `manual-pv` and get the writer pod running.
 
