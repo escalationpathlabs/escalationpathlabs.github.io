@@ -46,9 +46,9 @@
 NAME                   READY   STATUS    RESTARTS
 api-65c877c9bd-7qgnm   1/1     Running   0
 
-$ kubectl get endpoints api-svc -n breakfix-01
-NAME      ENDPOINTS   AGE
-api-svc   &lt;none&gt;      4m
+$ kubectl get endpointslice -n breakfix-01 -l kubernetes.io/service-name=api-svc
+NAME              ADDRESSTYPE   PORTS   ENDPOINTS
+api-svc-7m2zt     IPv4          80      &lt;none&gt;
 
 $ kubectl get pods -n breakfix-01 --show-labels
 api-65c...   Running   app=api
@@ -116,7 +116,7 @@ Selector: app=backend
           <p class="eyebrow">FIELD MANUAL 001 // FULL PACK</p>
           <h2>Kubernetes Break/Fix Labs</h2>
           <p class="price">10 labs · $10 · one-time</p>
-          <p>The free three plus seven more scenarios covering NetworkPolicy, probes, ConfigMaps, RBAC, CronJobs, ResourceQuota, and startup/readiness interactions.</p>
+          <p>The free three plus seven more scenarios covering NetworkPolicy, probes, ConfigMaps, RBAC, CronJobs, ResourceQuota, and startup/readiness/liveness interactions.</p>
           <ul>
             <li>Broken manifests you diagnose and repair yourself</li>
             <li>Detailed solutions explaining what failed and why</li>
