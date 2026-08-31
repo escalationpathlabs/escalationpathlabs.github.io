@@ -5,27 +5,183 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Escalation Path Labs — Help Desk to Cloud Infrastructure</title>
   <meta name="description" content="Practical break/fix labs and guides for help desk, NOC, desktop support, and junior sysadmin techs moving into cloud infrastructure.">
+  <meta name="theme-color" content="#0b0e0f">
+  <link rel="icon" href="/brand-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Escalation Path Labs</a><nav><a href="/labs/">Free Labs</a><a href="/help-desk-to-cloud.html">Help Desk → Cloud</a><a href="mailto:escalationpathlabs@gmail.com">Support</a></nav></div></header>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="/">Escalation Path Labs</a>
+      <nav>
+        <a href="/labs/">Free Labs</a>
+        <a href="/help-desk-to-cloud.html">Help Desk → Cloud</a>
+        <a href="#full-pack">Full Pack</a>
+        <a href="mailto:escalationpathlabs@gmail.com">Support</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <section class="hero wrap"><p class="eyebrow">HELP DESK → INFRASTRUCTURE</p><h1>Get out of the queue.<br>Learn to fix the stuff behind it.</h1><p class="lede">Hands-on break/fix material for people moving from help desk, NOC, desktop support, or junior sysadmin work into Linux, cloud, containers, and infrastructure.</p><div class="actions"><a class="button primary" href="/labs/">Try 3 free labs</a><a class="button secondary" href="/help-desk-to-cloud.html">Read the roadmap</a></div></section>
-    <section class="section alt"><div class="wrap"><p class="eyebrow">START FREE</p><h2>Break something on purpose.</h2><div class="card-grid"><a class="lab-card" href="/labs/01-service-no-endpoints/"><span class="eyebrow">LAB 01</span><h2>Service has no endpoints</h2><p>Healthy pods, dead Service. Diagnose the selector mismatch.</p></a><a class="lab-card" href="/labs/02-taint-pending/"><span class="eyebrow">LAB 02</span><h2>Pending forever</h2><p>A scheduler refusal hidden behind a perfectly healthy node.</p></a><a class="lab-card" href="/labs/03-pvc-wrong-class/"><span class="eyebrow">LAB 03</span><h2>PVC never binds</h2><p>Enough storage exists. It is still the wrong storage.</p></a></div><p class="small">All three include the broken config, hints, full solutions, and cleanup. No email address required.</p></div></section>
-    <section class="section wrap"><p class="eyebrow">THE BIGGER MOVE</p><div class="split-cta"><div><h2>Coming from support?</h2><p>You probably do not need to start over. The useful path is Linux, networking, scripting, containers, one cloud, IaC, then orchestration — with troubleshooting reps the whole way.</p><a href="/help-desk-to-cloud.html">Read Help Desk → Cloud Infrastructure →</a></div><div><h2>Already know the basics?</h2><p>Skip the roadmap and go straight to the broken systems. If the free labs are too easy, that is useful information too.</p><a href="/labs/">Open the free labs →</a></div></div></section>
-    <section class="section alt" id="labs"><div class="wrap product-grid"><div><p class="eyebrow">FULL PACK</p><h2>Kubernetes Break/Fix Labs</h2><p class="price">10 labs · $10 · one-time</p><p>The free three plus seven more scenarios covering NetworkPolicy, probes, ConfigMaps, RBAC, CronJobs, ResourceQuota, and startup/readiness interactions.</p><ul><li>Broken manifests you diagnose and repair yourself</li><li>Detailed solutions explaining what failed and why</li><li>Cleanup scripts and reusable lab files</li><li>No recurring subscription and no account to maintain</li></ul><div class="actions"><a class="button primary" href="https://buy.stripe.com/6oUdR972E2EtfpQ7L84c800">Get all 10 labs — $10</a><a class="button secondary" href="/labs/">Do the free ones first</a></div></div><div class="terminal"><div class="terminal-bar"><span></span><span></span><span></span></div><pre><code>$ kubectl get endpoints api-svc
+    <section class="home-hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">FIELD MANUAL 001 // HELP DESK → INFRASTRUCTURE</p>
+          <h1>Get out of the queue.<br><span class="accent">Fix the stuff behind it.</span></h1>
+          <p class="lede">Hands-on break/fix material for help desk, NOC, desktop support, and junior sysadmin people who are tired of being told to “learn cloud” and would rather troubleshoot something real.</p>
+          <div class="actions">
+            <a class="button primary" href="/labs/">Start with 3 free labs</a>
+            <a class="button secondary" href="/help-desk-to-cloud.html">Read the roadmap</a>
+          </div>
+          <div class="hero-meta">
+            <span><strong>Format:</strong> break / inspect / explain / fix</span>
+            <span><strong>Account:</strong> none</span>
+            <span><strong>Video course:</strong> absolutely not</span>
+          </div>
+        </div>
+
+        <div class="terminal" aria-label="Example Kubernetes troubleshooting session">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <pre><code>$ kubectl get pods -n breakfix-01
+NAME                   READY   STATUS    RESTARTS
+api-65c877c9bd-7qgnm   1/1     Running   0
+
+$ kubectl get endpoints api-svc -n breakfix-01
 NAME      ENDPOINTS   AGE
 api-svc   &lt;none&gt;      4m
 
-$ kubectl describe svc api-svc
+$ kubectl get pods -n breakfix-01 --show-labels
+api-65c...   Running   app=api
+
+$ kubectl describe svc api-svc -n breakfix-01
 Selector: app=backend
 
-$ kubectl get pods --show-labels
-api-7c9...   Running   app=api
+&gt; theory: the Service selects zero pods
+&gt; status: investigate, then fix</code></pre>
+          <div class="stamp">Broken on purpose</div>
+        </div>
+      </div>
+    </section>
 
-# The Service isn't mysterious.
-# It selects zero pods.</code></pre></div></div></section>
-    <section class="section wrap" id="about"><p class="eyebrow">WHY THIS EXISTS</p><h2>Learn troubleshooting, not incantations.</h2><div class="columns"><p>Cloud training has no shortage of videos telling you where to click. That is useful right up until something breaks. Escalation Path Labs is built around deliberately broken systems, observable symptoms, and the process of figuring out what actually happened.</p><p>The material is for working IT people who already know how to follow a ticket, use a terminal, and search an error message, but want the judgment required to own more of the stack.</p></div></section>
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">FREE SAMPLER // NO SIGNUP</p>
+            <h2>Three things are broken.<br>You get to find out why.</h2>
+          </div>
+          <p>These are complete labs, not teaser screenshots. You get the bad config, hints, the full solution, and cleanup files. If they are useless, you have spent zero dollars and learned something important about our business model.</p>
+        </div>
+
+        <div class="card-grid">
+          <a class="lab-card" href="/labs/01-service-no-endpoints/">
+            <span class="eyebrow">LAB 01 · EASY · 5–10 MIN</span>
+            <h2>Service has no endpoints</h2>
+            <p>Healthy pods, dead Service. Diagnose the selector mismatch before blaming DNS.</p>
+          </a>
+          <a class="lab-card" href="/labs/02-taint-pending/">
+            <span class="eyebrow">LAB 02 · EASY · 5–10 MIN</span>
+            <h2>Pending forever</h2>
+            <p>A scheduler refusal hidden behind a perfectly healthy node. Read the event before guessing.</p>
+          </a>
+          <a class="lab-card" href="/labs/03-pvc-wrong-class/">
+            <span class="eyebrow">LAB 03 · MEDIUM · 10–15 MIN</span>
+            <h2>PVC never binds</h2>
+            <p>Enough storage exists. It is still the wrong storage. Trace what the claim actually requires.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <p class="eyebrow">THE ESCALATION PATH</p>
+      <div class="split-cta">
+        <div>
+          <h2>Coming from support?</h2>
+          <p>You probably do not need to start over. The useful path is Linux, networking, scripting, containers, one cloud, IaC, then orchestration — with troubleshooting reps the whole way.</p>
+          <a href="/help-desk-to-cloud.html">Read Help Desk → Cloud Infrastructure →</a>
+        </div>
+        <div>
+          <h2>Already know the basics?</h2>
+          <p>Good. Skip the motivational speech and open the broken systems. If the free labs are too easy, that tells you more than a certificate badge does.</p>
+          <a href="/labs/">Open the free labs →</a>
+        </div>
+      </div>
+      <div class="manual-strip"><span>less talk</span><span>more kubectl</span><span>failures included</span><span>production not required</span></div>
+    </section>
+
+    <section class="section" id="full-pack">
+      <div class="wrap product-grid">
+        <div>
+          <p class="eyebrow">FIELD MANUAL 001 // FULL PACK</p>
+          <h2>Kubernetes Break/Fix Labs</h2>
+          <p class="price">10 labs · $10 · one-time</p>
+          <p>The free three plus seven more scenarios covering NetworkPolicy, probes, ConfigMaps, RBAC, CronJobs, ResourceQuota, and startup/readiness interactions.</p>
+          <ul>
+            <li>Broken manifests you diagnose and repair yourself</li>
+            <li>Detailed solutions explaining what failed and why</li>
+            <li>Cleanup scripts and reusable lab files</li>
+            <li>No recurring subscription and no account to maintain</li>
+          </ul>
+          <div class="actions">
+            <a class="button primary" href="https://buy.stripe.com/6oUdR972E2EtfpQ7L84c800">Get all 10 labs — $10</a>
+            <a class="button secondary" href="/labs/">Do the free ones first</a>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <pre><code>INCIDENT: BF-007
+STATE: INTENTIONALLY BROKEN
+
+Symptoms:
+  pod: Running
+  readiness: 0/1
+  service: reachable
+  user traffic: dead
+
+Known facts:
+  - container started
+  - process exists
+  - probe disagrees
+
+Your job:
+  1. inspect
+  2. form a theory
+  3. prove it
+  4. fix the smallest thing</code></pre>
+          <div class="stamp">Break / Fix / Learn</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="about">
+      <div class="wrap">
+        <p class="eyebrow">WHY THIS EXISTS</p>
+        <h2>Learn troubleshooting,<br>not incantations.</h2>
+        <div class="columns">
+          <p>Cloud training has no shortage of videos telling you where to click. That is useful right up until something breaks. Escalation Path Labs is built around deliberately broken systems, observable symptoms, and the process of figuring out what actually happened.</p>
+          <p>The material is for working IT people who already know how to follow a ticket, use a terminal, and search an error message, but want the judgment required to own more of the stack.</p>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer><div class="wrap footer-grid"><div><strong>Escalation Path Labs</strong><p class="small">Practical break/fix training for the next rung up.</p></div><div class="footer-links"><a href="/labs/">Free Labs</a><a href="/help-desk-to-cloud.html">Roadmap</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/refunds.html">Refunds</a><a href="https://github.com/escalationpathlabs">GitHub</a></div></div></footer>
-</body></html>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand" href="/">Escalation Path Labs</a>
+        <p class="small">Break / fix / learn. Then take the next escalation yourself.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/labs/">Free Labs</a>
+        <a href="/help-desk-to-cloud.html">Roadmap</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/refunds.html">Refunds</a>
+        <a href="https://github.com/escalationpathlabs">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
