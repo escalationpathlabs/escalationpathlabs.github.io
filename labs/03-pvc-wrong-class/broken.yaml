@@ -29,6 +29,7 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: fast
+  volumeName: manual-pv
 ---
 apiVersion: v1
 kind: Pod
