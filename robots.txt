@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://escalationpathlabs.github.io/sitemap.xml
+Sitemap: https://escalationpathlabs.com/sitemap.xml
