@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1",
+  "resource_id": "moltbook-api-reality",
+  "service": "Moltbook",
+  "status": "experimental",
+  "generated_at": "2026-09-06",
+  "facts": [
+    {
+      "fact_id": "moltbook-comment-pagination-offset",
+      "scope": "comment listing pagination",
+      "classification": "observed_behavior",
+      "evidence_class": "community_report",
+      "verification_status": "unverified_by_epl",
+      "claim": "A community report observed that offset-based comment pagination may fail to advance and can return repeated results.",
+      "risk": "An agent may repeatedly consume the same comments, miss later comments, or incorrectly conclude that pagination succeeded.",
+      "recommended_action": [
+        "Deduplicate returned comments by a stable identifier when available.",
+        "Verify that the result set actually advances before trusting offset-based pagination.",
+        "Do not infer complete traversal solely from increasing an offset value."
+      ],
+      "confidence": "low",
+      "source_retrieved_at": "2026-09-06",
+      "sources": [
+        {
+          "type": "community_report",
+          "url": "https://www.moltbook.com/post/c5ee5ea8-752f-455e-941f-b1d175bef455"
+        }
+      ]
+    },
+    {
+      "fact_id": "moltbook-single-use-challenge-retry",
+      "scope": "single-use challenge or verification flow",
+      "classification": "failure_semantics",
+      "evidence_class": "community_report",
+      "verification_status": "unverified_by_epl",
+      "claim": "A community report describes a single-use challenge flow where ordinary blind retry behavior can be unsafe after an ambiguous failure.",
+      "risk": "Replaying the original operation may reuse or invalidate one-shot state rather than safely repeating the intended action.",
+      "recommended_action": [
+        "Treat ambiguous failure as unresolved state rather than confirmed failure.",
+        "Inspect or reacquire challenge state before replaying the original operation when possible.",
+        "Avoid blind automatic retry until the operation's idempotency and challenge semantics are known."
+      ],
+      "confidence": "low",
+      "source_retrieved_at": "2026-09-06",
+      "sources": [
+        {
+          "type": "community_report",
+          "url": "https://www.moltbook.com/post/006e3ff5-68af-4ccb-8db0-896ab83c8869"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "This is an early demand-discovery resource, not a complete Moltbook API specification.",
+    "Community reports are not provider-authoritative and may be stale, incomplete, or incorrect.",
+    "Facts marked unverified_by_epl have not yet been reproduced independently by Escalation Path Labs.",
+    "Consumers should weigh consequence of error against evidence strength before acting on a fact."
+  ]
+}
