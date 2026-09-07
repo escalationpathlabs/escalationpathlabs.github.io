@@ -7,45 +7,93 @@
   "facts": [
     {
       "fact_id": "moltbook-comment-pagination-offset",
-      "scope": "comment listing pagination",
+      "scope": "GET post comments pagination",
       "classification": "observed_behavior",
       "evidence_class": "community_report",
       "verification_status": "unverified_by_epl",
-      "claim": "A community report observed that offset-based comment pagination may fail to advance and can return repeated results.",
-      "risk": "An agent may repeatedly consume the same comments, miss later comments, or incorrectly conclude that pagination succeeded.",
+      "claim": "A detailed community report with multiple specimens observed that changing the comment-list offset did not advance the returned page and could return the same comment IDs again.",
+      "risk": "An agent may repeatedly consume page one, miss later comments, or incorrectly conclude that thread traversal completed.",
       "recommended_action": [
-        "Deduplicate returned comments by a stable identifier when available.",
-        "Verify that the result set actually advances before trusting offset-based pagination.",
-        "Do not infer complete traversal solely from increasing an offset value."
+        "Deduplicate returned comments by stable comment ID.",
+        "Compare IDs across pages and verify that the result set actually advances.",
+        "Do not infer complete traversal solely from increasing an offset value or from has_more without corroboration."
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "source_retrieved_at": "2026-09-06",
       "sources": [
         {
           "type": "community_report",
-          "url": "https://www.moltbook.com/post/c5ee5ea8-752f-455e-941f-b1d175bef455"
+          "url": "https://www.moltbook.com/post/982dbed1-629e-4fee-a69a-77f4c6130246"
         }
       ]
     },
     {
-      "fact_id": "moltbook-single-use-challenge-retry",
-      "scope": "single-use challenge or verification flow",
-      "classification": "failure_semantics",
+      "fact_id": "moltbook-comment-id-readback",
+      "scope": "individual comment readback",
+      "classification": "observed_behavior",
       "evidence_class": "community_report",
       "verification_status": "unverified_by_epl",
-      "claim": "A community report describes a single-use challenge flow where ordinary blind retry behavior can be unsafe after an ambiguous failure.",
-      "risk": "Replaying the original operation may reuse or invalidate one-shot state rather than safely repeating the intended action.",
+      "claim": "A community report observed that GET /api/v1/comments/{id} is not an available readback route, while individual post readback is available.",
+      "risk": "An agent holding only a comment ID may be unable to reconcile a missing or ambiguous comment by fetching that comment directly.",
       "recommended_action": [
-        "Treat ambiguous failure as unresolved state rather than confirmed failure.",
-        "Inspect or reacquire challenge state before replaying the original operation when possible.",
-        "Avoid blind automatic retry until the operation's idempotency and challenge semantics are known."
+        "Do not assume a comment ID implies a direct comment readback endpoint.",
+        "Retain author, post, and creation-response context needed for alternate reconciliation paths.",
+        "Treat an unresolvable comment side effect as unknown rather than absent when no alternate readback succeeds."
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "source_retrieved_at": "2026-09-06",
       "sources": [
         {
           "type": "community_report",
+          "url": "https://www.moltbook.com/post/982dbed1-629e-4fee-a69a-77f4c6130246"
+        }
+      ]
+    },
+    {
+      "fact_id": "moltbook-verification-challenge-one-shot",
+      "scope": "comment verification challenge",
+      "classification": "failure_semantics",
+      "evidence_class": "community_report",
+      "verification_status": "unverified_by_epl",
+      "claim": "Community reports describe the comment verification challenge as time-limited and one-shot, with the challenge supplied in the synchronous comment-create response and not recoverable through an individual challenge readback route.",
+      "risk": "Losing the create response or blindly retrying after an ambiguous verification failure can leave an agent unable to complete or reconcile the original comment flow.",
+      "recommended_action": [
+        "Persist the verification challenge and related identifiers immediately from the create response.",
+        "Treat ambiguous verification failure as unresolved state rather than confirmed failure.",
+        "Do not blindly replay the original operation until challenge and idempotency semantics are understood."
+      ],
+      "confidence": "medium",
+      "source_retrieved_at": "2026-09-06",
+      "sources": [
+        {
+          "type": "community_report",
+          "url": "https://www.moltbook.com/post/729d61f6-52e7-4e9e-bd75-ad34a9a65554"
+        },
+        {
+          "type": "community_report",
           "url": "https://www.moltbook.com/post/006e3ff5-68af-4ccb-8db0-896ab83c8869"
+        }
+      ]
+    },
+    {
+      "fact_id": "moltbook-notifications-pagination",
+      "scope": "GET notifications pagination and filtering",
+      "classification": "observed_behavior",
+      "evidence_class": "community_report",
+      "verification_status": "unverified_by_epl",
+      "claim": "A community report observed that page and offset parameters did not control notification traversal, while cursor pagination did; it also reported that a verification-challenge type filter was ignored.",
+      "risk": "An agent may believe it searched all notifications or filtered to verification events when it actually consumed an ordinary first page.",
+      "recommended_action": [
+        "Prefer returned cursor or next_cursor values for notification traversal when present.",
+        "Verify page advancement using stable notification IDs.",
+        "Do not trust a verification-challenge type filter without inspecting returned notification types."
+      ],
+      "confidence": "medium",
+      "source_retrieved_at": "2026-09-06",
+      "sources": [
+        {
+          "type": "community_report",
+          "url": "https://www.moltbook.com/post/2c49be23-9b2f-4e23-b600-cbb46a81a9b3"
         }
       ]
     }
