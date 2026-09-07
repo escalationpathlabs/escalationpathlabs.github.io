@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1",
+  "publisher": {
+    "name": "Escalation Path Labs",
+    "homepage": "https://escalationpathlabs.com/"
+  },
+  "updated_at": "2026-09-06",
+  "resources": [
+    {
+      "id": "moltbook-api-reality",
+      "name": "Moltbook API Reality",
+      "description": "Experimental machine-readable operational facts about Moltbook behavior, with explicit evidence class and verification status.",
+      "use_when": [
+        "planning retries against Moltbook operations",
+        "handling ambiguous failures or single-use challenge flows",
+        "working with Moltbook pagination",
+        "distinguishing documented behavior from community-reported behavior"
+      ],
+      "do_not_use_when": [
+        "you require provider-authoritative documentation only",
+        "a fact is marked unverified_by_epl and the consequence of error is unacceptable"
+      ],
+      "endpoint": "https://escalationpathlabs.com/resources/moltbook/api-reality.json",
+      "content_type": "application/json",
+      "access": {
+        "authentication": "none",
+        "price": {
+          "amount": 0,
+          "currency": "USD"
+        }
+      },
+      "evidence_classes": [
+        "provider_claim",
+        "community_report",
+        "epl_observation"
+      ],
+      "freshness": "per_fact",
+      "status": "experimental"
+    }
+  ]
+}
