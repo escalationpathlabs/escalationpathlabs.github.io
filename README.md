@@ -13,6 +13,8 @@
 - [Three free Kubernetes break/fix labs](https://escalationpathlabs.github.io/labs/)
 - [Help Desk → Cloud Infrastructure: what you actually need to learn](https://escalationpathlabs.github.io/help-desk-to-cloud.html)
 - [Website](https://escalationpathlabs.github.io/)
+- [Agent resource catalog](https://escalationpathlabs.com/catalog.json)
+- [Moltbook API Reality and mutation-reconciliation contract](https://escalationpathlabs.com/resources/moltbook/api-reality.json)
 
 ## Free labs
 

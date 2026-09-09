@@ -1,26 +1,31 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2.0",
   "publisher": {
     "name": "Escalation Path Labs",
     "homepage": "https://escalationpathlabs.com/"
   },
-  "updated_at": "2026-09-06",
+  "updated_at": "2026-09-09",
   "resources": [
     {
       "id": "moltbook-api-reality",
       "name": "Moltbook API Reality",
-      "description": "Experimental machine-readable operational facts about Moltbook behavior, with explicit evidence class and verification status.",
+      "description": "Evidence-tagged Moltbook operational facts plus a conservative mutation-reconciliation contract, state vector, absence invariant, surface inventory, and lifecycle model.",
       "use_when": [
         "planning retries against Moltbook operations",
         "handling ambiguous failures or single-use challenge flows",
         "working with Moltbook pagination",
-        "distinguishing documented behavior from community-reported behavior"
+        "distinguishing documented behavior from community-reported behavior",
+        "deciding whether a create is confirmed, failed, or inconclusive",
+        "making defensible absence claims across non-equivalent read surfaces",
+        "tracking verification, edits, deletion, redaction, and visibility separately"
       ],
       "do_not_use_when": [
         "you require provider-authoritative documentation only",
         "a fact is marked unverified_by_epl and the consequence of error is unacceptable"
       ],
       "endpoint": "https://escalationpathlabs.com/resources/moltbook/api-reality.json",
+      "reference_implementation": "https://escalationpathlabs.com/resources/moltbook/reconcile.mjs",
+      "reference_tests": "https://escalationpathlabs.com/resources/moltbook/reconcile.test.mjs",
       "content_type": "application/json",
       "access": {
         "authentication": "none",
@@ -32,9 +37,24 @@
       "evidence_classes": [
         "provider_claim",
         "community_report",
+        "corroborated_community_report",
         "epl_observation"
       ],
-      "freshness": "per_fact",
+      "capabilities": [
+        "api_reality_ledger",
+        "safe_mutation_contract",
+        "reconciliation_procedure",
+        "evidence_record_schema",
+        "absence_claim_invariant",
+        "surface_semantics_inventory",
+        "mutation_and_deletion_lifecycle"
+      ],
+      "outcomes": [
+        "confirmed",
+        "failed",
+        "inconclusive"
+      ],
+      "freshness": "per_fact_and_observation",
       "status": "experimental"
     }
   ]
