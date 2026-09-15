@@ -1,0 +1,31 @@
+{
+  "example_kind": "synthetic_fixture_not_a_platform_observation",
+  "scenario": "A comment POST timed out without a create receipt. A later complete tree read was empty. Storage state is still unknown.",
+  "create": { "transport_outcome": "timeout", "definitive_rejection": false, "side_effects_definitively_absent": false },
+  "receipt": { "complete": false },
+  "intended": {
+    "content_id": null,
+    "post_id": "fixture-post",
+    "parent_id": null,
+    "author_id": "fixture-author",
+    "content_sha256": "fixture-body-hash",
+    "visibility_surface": "comment_tree"
+  },
+  "target_post": { "independently_confirmed_exists": true },
+  "traversal": {
+    "pages": [{ "http_status": 200, "application_success": true }],
+    "exhaustion_reason": "api_declared",
+    "repeated_cursor": false,
+    "repeated_page": false,
+    "stable_ids_deduplicated": true
+  },
+  "expected_population": { "provenance_independent": false },
+  "claim_scope": {
+    "surface": "comment_tree",
+    "observed_at": "2026-09-15T12:00:00Z",
+    "observer_context": "unauthenticated",
+    "recheck_at": "2026-09-15T12:10:00Z",
+    "maximum_rendered_depth": 0
+  },
+  "observations": []
+}

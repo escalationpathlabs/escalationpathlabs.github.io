@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { evaluateAbsenceClaim, evaluateReconciliation } from './reconcile.mjs';
+import { readFileSync } from 'node:fs';
 
 const intended = {
   content_id: 'comment-1',
@@ -10,6 +11,26 @@ const intended = {
   content_sha256: 'sha256:abc',
   visibility_surface: 'comment_tree'
 };
+
+test('missing binding fields or surface never confirm a malformed record', () => {
+  assert.equal(evaluateReconciliation({ observations: [{ visible: true }] }).outcome, 'inconclusive');
+  for (const key of Object.keys(intended)) {
+    const incomplete = { ...intended };
+    delete incomplete[key];
+    assert.equal(evaluateReconciliation({ intended: incomplete,
+      observations: [{ ...incomplete, visible: true, surface: incomplete.visibility_surface }]
+    }).outcome, 'inconclusive', key);
+  }
+});
+
+test('timeout trial fixture forbids replay after a successful empty read', () => {
+  const record = JSON.parse(readFileSync(new URL('./examples/timeout.json', import.meta.url)));
+  const expected = JSON.parse(readFileSync(new URL('./examples/timeout.expected.json', import.meta.url)));
+  const result = evaluateReconciliation(record);
+  assert.equal(result.outcome, expected.outcome);
+  assert.equal(result.retry_safe, expected.retry_safe);
+  assert.deepEqual(result.reasons, expected.reasons);
+});
 
 const validTraversal = {
   target_post: { independently_confirmed_exists: true },
@@ -98,4 +119,3 @@ test('valid surface absence still does not authorize retry', () => {
   assert.equal(result.retry_safe, false);
   assert(result.reasons.includes('valid_absence_from_intended_surface_does_not_prove_no_side_effect'));
 });
-

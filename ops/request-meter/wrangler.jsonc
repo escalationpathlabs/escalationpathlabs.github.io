@@ -1,0 +1,29 @@
+{
+  "name": "epl-resource-request-meter",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-09-07",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "escalationpathlabs.com/skill.md*", "zone_name": "escalationpathlabs.com" },
+    { "pattern": "escalationpathlabs.com/catalog.json*", "zone_name": "escalationpathlabs.com" },
+    { "pattern": "escalationpathlabs.com/resources/moltbook/api-reality.json*", "zone_name": "escalationpathlabs.com" },
+    { "pattern": "escalationpathlabs.com/resources/moltbook/reconcile.mjs*", "zone_name": "escalationpathlabs.com" },
+    { "pattern": "escalationpathlabs.com/resources/moltbook/reconcile.test.mjs*", "zone_name": "escalationpathlabs.com" },
+    { "pattern": "escalationpathlabs.com/resources/moltbook/quickstart.md*", "zone_name": "escalationpathlabs.com" },
+    { "pattern": "escalationpathlabs.com/resources/moltbook/examples/timeout.json*", "zone_name": "escalationpathlabs.com" },
+    { "pattern": "escalationpathlabs.com/resources/moltbook/examples/timeout.expected.json*", "zone_name": "escalationpathlabs.com" }
+  ],
+  "d1_databases": [
+    {
+      "binding": "METRICS_DB",
+      "database_name": "epl-resource-metrics",
+      "database_id": "feb0066f-0f66-4504-8bd1-602aa27eace2"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": { "enabled": true, "invocation_logs": false }
+  }
+}

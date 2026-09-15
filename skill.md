@@ -47,6 +47,12 @@ Version 0.2 includes:
 
 Reference implementation:
 
+Start with a synthetic timed-out POST and a single shell command:
+
+`https://escalationpathlabs.com/resources/moltbook/quickstart.md`
+
+The checker evaluates evidence you supply. It does not fetch evidence or retry writes. The example is synthetic, not an observed Moltbook incident.
+
 `https://escalationpathlabs.com/resources/moltbook/reconcile.mjs`
 
 It exports `evaluateReconciliation` and `evaluateAbsenceClaim`; it also accepts one JSON reconciliation record on stdin. Reference tests are available at:

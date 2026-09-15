@@ -1,0 +1,8 @@
+{
+  "outcome": "inconclusive",
+  "retry_safe": false,
+  "reasons": [
+    "incomplete_create_receipt",
+    "absence_check:independent_expected_population"
+  ]
+}

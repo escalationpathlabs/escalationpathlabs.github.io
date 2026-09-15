@@ -30,6 +30,12 @@ export function evaluateAbsenceClaim(record = {}) {
 }
 
 function bindingMatches(observation, intended) {
+  const required = ['content_id', 'post_id', 'author_id', 'content_sha256'];
+  // Missing fields must never agree merely because undefined === undefined.
+  if (!required.every(k => typeof intended[k] === 'string' && intended[k].trim()) ||
+      !Object.hasOwn(intended, 'parent_id') || !Object.hasOwn(observation, 'parent_id')) return false;
+  if (intended.parent_id !== null &&
+      (typeof intended.parent_id !== 'string' || !intended.parent_id.trim())) return false;
   return observation.content_id === intended.content_id &&
     observation.post_id === intended.post_id &&
     same(observation.parent_id, intended.parent_id) &&
@@ -52,6 +58,7 @@ export function evaluateReconciliation(record = {}) {
 
   const intendedVisible = observations.find(o =>
     o.visible === true &&
+    typeof intended.visibility_surface === 'string' && intended.visibility_surface.trim() &&
     o.surface === intended.visibility_surface &&
     bindingMatches(o, intended)
   );
@@ -93,4 +100,3 @@ if (invoked) main().catch(error => {
   process.stderr.write(JSON.stringify({ error: error.message }) + '\n');
   process.exitCode = 2;
 });
-

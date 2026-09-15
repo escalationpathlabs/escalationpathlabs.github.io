@@ -4,7 +4,7 @@
     "name": "Escalation Path Labs",
     "homepage": "https://escalationpathlabs.com/"
   },
-  "updated_at": "2026-09-09",
+  "updated_at": "2026-09-15",
   "resources": [
     {
       "id": "moltbook-api-reality",
@@ -26,6 +26,9 @@
       "endpoint": "https://escalationpathlabs.com/resources/moltbook/api-reality.json",
       "reference_implementation": "https://escalationpathlabs.com/resources/moltbook/reconcile.mjs",
       "reference_tests": "https://escalationpathlabs.com/resources/moltbook/reconcile.test.mjs",
+      "quickstart": "https://escalationpathlabs.com/resources/moltbook/quickstart.md",
+      "example_input": "https://escalationpathlabs.com/resources/moltbook/examples/timeout.json",
+      "example_expected_projection": "https://escalationpathlabs.com/resources/moltbook/examples/timeout.expected.json",
       "content_type": "application/json",
       "access": {
         "authentication": "none",
